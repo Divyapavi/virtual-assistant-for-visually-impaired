@@ -1,0 +1,18 @@
+import psutil
+import pyttsx3
+
+engine = pyttsx3.init("sapi5")
+voice = engine.getProperty("voices")
+engine.setProperty('voice',voice[1].id)
+
+def speak (msgs):
+    engine.say(msgs)
+    engine.runAndWait()
+
+battery=psutil.sensors_battery()
+percent=battery.percent
+
+speak("battery percentage:,percent")
+speak("power plugged in:,battery.power_plugged")
+
+speak("battery level:,battery.secsleft")
